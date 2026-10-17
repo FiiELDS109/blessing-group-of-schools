@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coming Soon - BGS Alumni</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="shortcut icon" href="img/bgss.png" type="image/x-icon">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: linear-gradient(135deg, #f0f8fd 0%, #ffffff 50%, #f9f6f0 100%);
+      color: #4a4a6a;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow-x: hidden;
+    }
+
+    .container { max-width: 800px; padding: 40px 30px; text-align: center; }
+
+    .logo-section {
+      margin-bottom: 50px;
+      animation: fadeInDown 0.8s ease-out;
+    }
+
+    .logo-box {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 20px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 40px rgba(139, 26, 26, 0.3);
+      animation: logoFloat 3s ease-in-out infinite, rotateSlow 20s linear infinite;
+      background: white;
+      padding: 8px;
+    }
+
+    .logo-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 16px;
+    }
+
+    .logo-text {
+      color: white;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 32px;
+      font-weight: 700;
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 56px;
+      font-weight: 700;
+      color: #1a1a2e;
+      margin-bottom: 20px;
+      line-height: 1.2;
+      animation: fadeInUp 0.8s ease-out 0.2s both;
+    }
+
+    .subtitle {
+      font-size: 20px;
+      color: #4AB3E8;
+      font-weight: 600;
+      margin-bottom: 30px;
+      animation: fadeInUp 0.8s ease-out 0.4s both;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      position: relative;
+    }
+
+    .subtitle::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #4AB3E8, transparent);
+      animation: shimmerLine 2s ease-in-out infinite;
+    }
+
+    p {
+      font-size: 18px;
+      color: #4a4a6a;
+      line-height: 1.8;
+      margin-bottom: 40px;
+      animation: fadeInUp 0.8s ease-out 0.6s both;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .email-form {
+      display: flex;
+      gap: 12px;
+      margin: 40px 0;
+      animation: scaleIn 0.8s ease-out 0.8s both;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    input {
+      flex: 1;
+      min-width: 250px;
+      padding: 16px 20px;
+      border: 2px solid #4AB3E8;
+      border-radius: 12px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      background: white;
+      color: #1a1a2e;
+      animation: slideInLeft 0.8s ease-out 0.8s both;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #8B1A1A;
+      box-shadow: 0 0 0 3px rgba(139, 26, 26, 0.1);
+      transform: scale(1.02);
+    }
+
+    input::placeholder {
+      color: #999;
+    }
+
+    button {
+      padding: 16px 40px;
+      background: linear-gradient(135deg, #8B1A1A 0%, #b52020 100%);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(139, 26, 26, 0.2);
+      animation: slideInRight 0.8s ease-out 0.8s both, buttonPulse 2s ease-in-out 2s infinite;
+      position: relative;
+      overflow: hidden;
+    }
+
+    @keyframes buttonPulse {
+      0%, 100% { box-shadow: 0 4px 15px rgba(139, 26, 26, 0.2); }
+      50% { box-shadow: 0 4px 25px rgba(139, 26, 26, 0.4); }
+    }
+
+    button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.2);
+      transition: left 0.3s ease;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(139, 26, 26, 0.3);
+    }
+
+    button:hover::before {
+      left: 100%;
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+
+    .status-message {
+      margin-top: 15px;
+      font-size: 14px;
+      color: #4AB3E8;
+      display: none;
+      animation: slideInUp 0.5s ease-out;
+    }
+
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #4AB3E8, transparent);
+      margin: 50px 0;
+      animation: fadeIn 1.2s ease-out 1s both;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 40px;
+      animation: fadeInUp 0.8s ease-out 1s both;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      text-decoration: none;
+      color: #4AB3E8;
+      font-size: 16px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      position: relative;
+      animation: fadeIn 0.8s ease-out 1.1s both;
+    }
+
+    .footer-links a:hover {
+      color: #8B1A1A;
+      transform: translateY(-3px);
+    }
+
+    .footer-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #8B1A1A;
+      transition: width 0.3s ease;
+    }
+
+    .footer-links a:hover::after {
+      width: 100%;
+    }
+
+    @keyframes shimmerLine {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 1; }
+    }
+
+    @keyframes slideInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .decoration {
+      position: absolute;
+      opacity: 0.1;
+      pointer-events: none;
+    }
+
+    .circle-1 {
+      width: 300px;
+      height: 300px;
+      background: #4AB3E8;
+      border-radius: 50%;
+      top: -100px;
+      right: -100px;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .circle-2 {
+      width: 200px;
+      height: 200px;
+      background: #8B1A1A;
+      border-radius: 50%;
+      bottom: -50px;
+      left: -50px;
+      animation: float 8s ease-in-out infinite reverse;
+    }
+
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: #4AB3E8;
+      border-radius: 50%;
+      pointer-events: none;
+      opacity: 0.3;
+    }
+
+    .particle-1 { animation: floatParticle 8s infinite; top: 10%; left: 5%; }
+    .particle-2 { animation: floatParticle 10s infinite; top: 20%; right: 8%; animation-delay: 1s; }
+    .particle-3 { animation: floatParticle 12s infinite; bottom: 15%; left: 10%; animation-delay: 2s; }
+    .particle-4 { animation: floatParticle 9s infinite; top: 30%; right: 12%; animation-delay: 1.5s; background: #8B1A1A; }
+
+    @keyframes floatParticle {
+      0%, 100% { transform: translateY(0px) translateX(0px); }
+      33% { transform: translateY(-20px) translateX(10px); }
+      66% { transform: translateY(20px) translateX(-10px); }
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(20px); }
+    }
+
+    @keyframes logoFloat {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-15px); }
+    }
+
+    @keyframes rotateSlow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes slideInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    @keyframes shimmer {
+      0% { background-position: -1000px 0; }
+      100% { background-position: 1000px 0; }
+    }
+
+    @keyframes scaleIn {
+      from {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes slideProgress {
+      0% { width: 20%; left: -100%; }
+      50% { width: 80%; left: 0; }
+      100% { width: 20%; left: 100%; }
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 40px; }
+      .subtitle { font-size: 16px; }
+      p { font-size: 16px; }
+      .email-form { flex-direction: column; }
+      input { min-width: 100%; }
+      .footer-links { gap: 15px; font-size: 14px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="decoration circle-1"></div>
+  <div class="decoration circle-2"></div>
+  <div class="particle particle-1"></div>
+  <div class="particle particle-2"></div>
+  <div class="particle particle-3"></div>
+  <div class="particle particle-4"></div>
+
+  <div style="position: fixed; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, #8B1A1A, #4AB3E8, #b52020); animation: slideProgress 2s ease-in-out infinite; z-index: 1000;"></div>
+
+  <div class="container">
+    <div class="logo-section">
+      <div class="logo-box">
+        <img src="img/bgss.png" alt="BGS Logo" />
+      </div>
+      <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 28px; color: #1a1a2e; margin-top: 15px; animation: fadeInUp 0.8s ease-out 0.1s both;">Blessing Group of Schools</h2>
+    </div>
+
+    <div class="subtitle">Coming Soon</div>
+    
+    <h1>This Part of BGS is Currently Being Built. Please #HODL</h1>
+    
+    <p>We're crafting exceptional platforms to connect our alumni community and celebrate our shared heritage. We'll be launching these platforms soonest with exciting features, stories, and opportunities. <br><br> Thank You Always... For Choosing BGS.</p>
+
+    <div class="email-form">
+      <input type="email" placeholder="Enter your email" id="emailInput" required>
+      <button onclick="handleSignup()">Notify Me</button>
+    </div>
+    <div class="status-message" id="statusMessage"></div>
+
+    <div class="divider"></div>
+
+    <div class="footer-links">
+      <a href="contact.html" style="animation-delay: 0s;">Contact Us</a>
+      <a href="index.html" style="animation-delay: 0.1s;">Back To Home</a>
+      <a href="projects.html" style="animation-delay: 0.2s;">See Projects</a>
+      <a href="blog.html" style="animation-delay: 0.3s;">Read Blogs</a>
+    </div>
+  </div>
+
+  <script>
+    function handleSignup() {
+      const email = document.getElementById('emailInput').value;
+      const statusMsg = document.getElementById('statusMessage');
+      const button = document.querySelector('.email-form button');
+      
+      if (!email) {
+        statusMsg.textContent = 'Please enter your email address.';
+        statusMsg.style.color = '#E85D5D';
+        statusMsg.style.display = 'block';
+        return;
+      }
+      
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        statusMsg.textContent = 'Please enter a valid email address.';
+        statusMsg.style.color = '#E85D5D';
+        statusMsg.style.display = 'block';
+        return;
+      }
+
+      // Disable button and show sending status
+      button.disabled = true;
+      statusMsg.textContent = 'Sending...';
+      statusMsg.style.color = '#4AB3E8';
+      statusMsg.style.display = 'block';
+      
+      // Send email via EmailJS
+      emailjs.send('service_7buxqqw', 'template_otd533s', {
+        subscriber_email: email,
+        to_email: 'blessing.gos26@gmail.com'
+      }).then(function (response) {
+        statusMsg.textContent = '✓ Thank you! We\'ll notify you when we launch.';
+        statusMsg.style.color = '#4AB3E8';
+        statusMsg.style.display = 'block';
+        document.getElementById('emailInput').value = '';
+        button.disabled = false;
+        
+        setTimeout(() => {
+          statusMsg.style.display = 'none';
+        }, 4000);
+      }, function (error) {
+        statusMsg.textContent = 'Error sending notification. Please try again.';
+        statusMsg.style.color = '#E85D5D';
+        statusMsg.style.display = 'block';
+        button.disabled = false;
+        
+        setTimeout(() => {
+          statusMsg.style.display = 'none';
+        }, 4000);
+      });
+    }
+
+    document.getElementById('emailInput').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') handleSignup();
+    });
+  </script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/index.min.js"></script>
+  <script>
+    emailjs.init('-V6cZsMkq0BP73ASB'); 
+  </script>
+</body>
+</html>
